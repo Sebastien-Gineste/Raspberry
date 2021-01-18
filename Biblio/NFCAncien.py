@@ -3,7 +3,6 @@ import os,time,threading,sys,signal
 from Biblio.pn532 import *
 from Biblio.lcd import Lcd
 from Biblio.Button import Button
-from datetime import datetime
 
 
 class myThread(threading.Thread):
@@ -32,24 +31,16 @@ class NFC:
 		lcd = Lcd(1)
 		butCache = Button(5)
 		estAppuie = False
-		
-		tempsAttente = datetime.now()
 		lcd.setText("En attente de   carte ...")
 		lcd.setColor("bleu")
 		while self.th.valCard == "": #Attends qu'il récupère sa valeur
 			if butCache.estAppuie() and not estAppuie:
 				estAppuie = True
 			elif not butCache.estAppuie() and estAppuie:
-				return -2 #Quitte le programme : le joueur a
-			elif 4 == int((datetime.now() - tempsAttente).total_seconds()):
-				lcd.setText("Bientôt fini...")
-				lcd.setColor("rouge")
+				self.th.tuer()
+				return -2 #Quitte le programme : le joueur abandonne
 		print("test : ",self.th.valCard[2])
-		if len(self.th.valCard[2]) > 2 : # Pas carte au bout de 10 seconde
-			return -2
-		else :
-			return self.th.valCard[2] #La retourne
-		#return self.th.valCard[2] #La retourne
+		return self.th.valCard[2] #La retourne
 
 	def DetectCard(self):
 		try:
@@ -59,14 +50,7 @@ class NFC:
 
 			# Configure PN532 to communicate with MiFare cards
 			pn532.SAM_configuration()
-			
-			def fin_signal_ALRM(sig,ignore):
-				print("ça fait 5 secondes, on kill")
-				sys.exit()
-
-			signal.signal(signal.SIGALRM,fin_signal_ALRM)
-			signal.alarm(5)
-
+	
 			print('Waiting for RFID/NFC card...')
 			while True:
 				# Check if a card is available to read
