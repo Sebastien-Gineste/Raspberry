@@ -46,6 +46,9 @@ def Enigme3(tLim,nbTour,zone) :
 				time.sleep(1)
 		led.turnOff()
 		return True
+	elif val == "-2":
+		lcd.setText("Plus de temps")
+		return False
 	else: #mauvaise carte
 		lcd.setText("mauvaise carte ..")
 		return False
