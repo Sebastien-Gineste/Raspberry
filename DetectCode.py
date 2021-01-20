@@ -4,7 +4,7 @@ from Biblio.Button import Button
 from Biblio.lcd import Lcd
 import time
 
-def DetectCode():
+def DetectCode(code1,code2):
 	lcd = Lcd(1)
 	But1 = Button(2)
 	But2 = Button(3)
@@ -12,8 +12,8 @@ def DetectCode():
 	LancementDirect = True
 	tabB = [But1,But2,But3]
 	tabEstAppuie = [False,False,False]
-	codeEnigme1 = [0,1,2,2]
-	codeEnigme2 = [1,2,1,1]
+	codeEnigme1 = code1
+	codeEnigme2 = code2
 	tabCodeEntrer = [-1,-1,-1,-1]
 
 	ContinueEntrerCode = True

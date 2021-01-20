@@ -76,7 +76,7 @@ try :
 			if but3.estAppuie():
 				estAppuie3 = True
 			elif not but3.estAppuie() and estAppuie3:  #On a relacher le bouton, on lance la détection du code
-				resultCode = dc.DetectCode()
+				resultCode = dc.DetectCode(verifPresenceParams("code1",[0,1,2,2]),verifPresenceParams("code2",[1,2,1,1]))
 				if resultCode == 1 and not tabEnigmeFini[0]: #commence Enigme 1
 					lcd.setText("Bravo ! code 1")
 					time.sleep(2)

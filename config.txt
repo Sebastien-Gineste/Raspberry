@@ -8,3 +8,5 @@ nbTourEnigme3=2
 zoneEnigme3=30
 tLimEnigme5=15
 tLimEnigme6=20
+code1=0-1-2-2
+code2=1-2-1-1
