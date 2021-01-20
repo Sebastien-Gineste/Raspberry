@@ -2,7 +2,7 @@ import sys
 
 class ManagParams :
   def __init__(self):
-    self.url = "text.txt"
+    self.url = "config.txt"
 
   def get(self, champs):
     try :
