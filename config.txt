@@ -1,0 +1,10 @@
+tempsTotal=400
+nbrEtapeEnigme1=3
+tLimEnigme1=5
+valTempsDiminuEnigme1=10
+nbrEtapeEnigme2=4
+tLimEnigme3=10
+nbTourEnigme3=4
+zoneEnigme3=100
+tLimEnigme5=15
+tLimEnigme6=50
