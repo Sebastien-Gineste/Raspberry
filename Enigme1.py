@@ -7,7 +7,8 @@ import random
 from datetime import datetime
 
 
-
+#Fonction qui réalisé l'enigme1, à chaque tour, l'écran LCD affiche un code ("0-0-X"), le joueur doit appuyé sur le bouton correspondant à la position du X
+#S'il réussie le nombre d'étape définie, il valide l'énigme.
 def Enigme1(nbrEtape,tLim,valTempsDiminu):
 	
 	lcd = Lcd(1)
@@ -60,7 +61,10 @@ def Enigme1(nbrEtape,tLim,valTempsDiminu):
 				time.sleep(2)
 				return True
 			else : # reste des étapes
-				tempsLimite-=valTempsDiminu
+				if tempsLimite-valTempsDiminu <= 1:
+					tempsLimite = 1 # 1 seconde minimum
+				else :
+					tempsLimite-=valTempsDiminu #Diminue le temps 
 				LcdAffiche = False
 				lcd.setText("Etape"+str(indiceEtape)+" reussie")
 				time.sleep(1)

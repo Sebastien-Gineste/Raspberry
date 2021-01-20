@@ -17,16 +17,17 @@ def Enigme3(tLim,nbTour,zone) :
 	codestr1 = "['0x9e','0xb8','0x0','0x0']"
 	codestr2 = "['0x1f','0xf5','0x90','0x0']"
 	nfc = NFC(codestr1,codestr2) #Initialisation du NFC
-
+	
 	time.sleep(0.5)
 	lcd.setText("Debut Enigme3")
+	nbtMax = 5
 	time.sleep(2)
 
 	val = nfc.ProgDetectCard() #test carte
 	print(val)
 	if val == "1": #bonne carte
 		i = 0
-		while i < nbTour :
+		while nbtMax > 0 and i < nbTour :
 			Dist = random.randint(10,200) #Button aléatoire entre 10 et 400 (centimetre)
 			time.sleep(0.1)
 			lcd.setColor("vert")
@@ -41,10 +42,15 @@ def Enigme3(tLim,nbTour,zone) :
 				lcd.setColor("rouge")
 				lcd.setText("Mauvaise distance !")
 				i = 0
+				nbtMax=nbtMax-1
 				time.sleep(1.5)
 				lcd.setText("On recommence !")
 				time.sleep(1)
 		led.turnOff()
+		if nbtMax <= 0 :
+			lcd.setText("Enigme echouer :(")
+			time.sleep(1)
+			return False
 		return True
 	elif val == "-2":
 		lcd.setText("Plus de temps")

@@ -76,7 +76,7 @@ def Enigme5(tLim) :
 			print(val)
 			if val == "2": #Si le NFC est activé et qu'il donne la bonne carte : Enigme fini
 				lcd.setColor("vert")
-				lcd.setText("Enigme 5 réussie")
+				lcd.setText("Enigme 5 reussie")
 				time.sleep(2)
 				return True
 			elif val == "-2":
@@ -84,6 +84,6 @@ def Enigme5(tLim) :
 			else:
 				lcd.setText("mauvaise carte ..")
 				time.sleep(2)
-				lcd.setColor("Vert")
+				lcd.setColor("vert")
 				return False
 
